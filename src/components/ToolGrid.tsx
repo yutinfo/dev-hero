@@ -11,6 +11,7 @@ import {
   BracketsCurly, 
   MagnifyingGlass, 
   ArrowUpRight,
+  Key,
   type IconProps
 } from '@phosphor-icons/react';
 import { tools } from '@/data/tools';
@@ -24,7 +25,8 @@ const iconMap: Record<string, IconComponent> = {
   Database,
   Code,
   TextAa,
-  BracketsCurly
+  BracketsCurly,
+  Key
 };
 
 export function ToolGrid() {

@@ -70,7 +70,9 @@ export const FIELD_LABELS: Record<'th' | 'en', FieldLabelSet> = {
         postalCode: 'รหัสไปรษณีย์',
         address: 'ที่อยู่',
         latitude: 'Lat',
-        longitude: 'Lon'
+        longitude: 'Lon',
+        username: 'Username',
+        password: 'Password'
     },
     en: {
         fullName: 'Full Name',
@@ -89,7 +91,9 @@ export const FIELD_LABELS: Record<'th' | 'en', FieldLabelSet> = {
         postalCode: 'Postal Code',
         address: 'Address',
         latitude: 'Lat',
-        longitude: 'Lon'
+        longitude: 'Lon',
+        username: 'Username',
+        password: 'Password'
     }
 };
 

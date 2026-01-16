@@ -27,6 +27,8 @@ interface MockRecord {
   latitude: number;
   longitude: number;
   phone?: string;
+  username?: string;
+  password?: string;
   [key: string]: string | number | undefined;
 }
 
@@ -88,6 +90,41 @@ export default function MockPage() {
     };
   }, [randInt, pick]);
 
+  const buildUsername = useCallback((first: string, last: string) => {
+    // Extract only letters
+    let base = first.normalize('NFD').replace(/[^a-zA-Z]/g, '').toLowerCase();
+    let suffix = last.normalize('NFD').replace(/[^a-zA-Z]/g, '').toLowerCase();
+    
+    // Fallback if names are non-English (e.g. Thai)
+    if (!base) {
+        const enNames = DATASETS['en'].firstNames;
+        base = pick(enNames).toLowerCase();
+    }
+    if (!suffix) {
+        const enLasts = DATASETS['en'].lastNames;
+        suffix = pick(enLasts).toLowerCase();
+    }
+    
+    return (base + suffix).slice(0, 12);
+  }, [pick]);
+
+  const buildPassword = useCallback(() => {
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lower = 'abcdefghijklmnopqrstuvwxyz';
+    const digits = '0123456789';
+    const special = '!@#$%^&*';
+    const all = upper + lower + digits + special;
+    
+    // Ensure at least one of each
+    let pwd = pick(upper.split('')) + pick(lower.split('')) + pick(digits.split('')) + pick(special.split(''));
+    
+    // Fill the rest to 12 chars
+    for (let i = 0; i < 8; i++) pwd += pick(all.split(''));
+    
+    // Shuffle
+    return pwd.split('').sort(() => 0.5 - Math.random()).join('');
+  }, [pick]);
+
   const buildRecord = useCallback((): MockRecord => {
     const dataset = DATASETS[language];
     const province = pick(dataset.provinces);
@@ -117,11 +154,13 @@ export default function MockPage() {
         postalCode: address.postal,
         address: address.full,
         latitude: Number(baseLat.toFixed(6)),
-        longitude: Number(baseLon.toFixed(6))
+        longitude: Number(baseLon.toFixed(6)),
+        username: buildUsername(firstName, lastName),
+        password: buildPassword()
     };
     if (withPhone) record.phone = buildPhone(dataset);
     return record;
-  }, [language, jitter, withPhone, pick, buildAddress, buildDOB, slugify, jitterVal, buildThaiId, buildPhone]);
+  }, [language, jitter, withPhone, pick, buildAddress, buildDOB, slugify, jitterVal, buildThaiId, buildPhone, buildUsername, buildPassword]);
 
   const generateData = useCallback(() => {
     const count = Math.min(Math.max(rowCount, 1), 200);

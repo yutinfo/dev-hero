@@ -62,5 +62,14 @@ export const tools: Tool[] = [
     accent: 'from-sky-500 via-cyan-400 to-emerald-300',
     icon: 'BracketsCurly',
     tags: ['json', 'format', 'lint']
+  },
+  {
+    id: 'jwt',
+    name: 'JWT HERO',
+    href: '/jwt',
+    description: 'Securely decode JWT tokens to inspect Header, Payload, and Signature.',
+    accent: 'from-purple-500 via-indigo-500 to-blue-500',
+    icon: 'Key',
+    tags: ['jwt', 'security', 'token', 'decode']
   }
 ];
