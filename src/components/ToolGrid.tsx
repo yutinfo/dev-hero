@@ -12,6 +12,8 @@ import {
   MagnifyingGlass, 
   ArrowUpRight,
   Key,
+  Clock,
+  Fingerprint,
   type IconProps
 } from '@phosphor-icons/react';
 import { tools } from '@/data/tools';
@@ -26,7 +28,9 @@ const iconMap: Record<string, IconComponent> = {
   Code,
   TextAa,
   BracketsCurly,
-  Key
+  Key,
+  Clock,
+  Fingerprint
 };
 
 export function ToolGrid() {

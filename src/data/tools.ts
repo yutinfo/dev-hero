@@ -71,5 +71,23 @@ export const tools: Tool[] = [
     accent: 'from-purple-500 via-indigo-500 to-blue-500',
     icon: 'Key',
     tags: ['jwt', 'security', 'token', 'decode']
+  },
+  {
+    id: 'timestamp',
+    name: 'TIMESTAMP HERO',
+    href: '/timestamp',
+    description: 'Convert Unix Timestamps to Human Dates and back with multi-timezone support.',
+    accent: 'from-blue-500 via-indigo-500 to-violet-500',
+    icon: 'Clock',
+    tags: ['dev', 'timestamp', 'conversion']
+  },
+  {
+    id: 'hash',
+    name: 'HASH HERO',
+    href: '/hash',
+    description: 'Secure client-side hashing (MD5, SHA, HMAC) with zero server latency.',
+    accent: 'from-rose-500 via-pink-500 to-fuchsia-400',
+    icon: 'Fingerprint',
+    tags: ['security', 'crypto', 'md5', 'sha']
   }
 ];
